@@ -37,7 +37,7 @@ class CreatePaymentController extends Controller
                 ],
                 "description" => Str::random(15),
                 "redirectUrl" =>env('MOLLIE_REDIRECT_URL'),
-                "webhookUrl" => env('MOLLIE_WEBHOOK_URL') . "payment_gates/mollie/webhooks",
+                "webhookUrl" => env('MOLLIE_WEBHOOK_URL') . "payment_gates/mollie/webhook",
                 "metadata" => [],
             ]);
 
