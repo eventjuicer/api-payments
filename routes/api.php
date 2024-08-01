@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentGates\IndexPaymentByPurchasesController;
 use App\Http\Controllers\PaymentGates\Mollie\CreatePaymentController;
-use App\Http\Controllers\PaymentGates\Mollie\IndexPaymentByPurchasesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
