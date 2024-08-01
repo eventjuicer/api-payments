@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('purchase_id');
             $table->unsignedBigInteger('payment_id');
             $table->text('data');
-            $table->foreign('payment_id')->references('id')->on('payments');
+            //$table->foreign('payment_id')->references('id')->on('payments');
             $table->timestamps();
         });
     }
