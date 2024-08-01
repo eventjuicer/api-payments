@@ -9,6 +9,8 @@ class Purchase extends Model
 {
     use HasFactory;
 
+    protected $table = 'purchases';
+
     public function payment()
     {
         return $this->belongsTo(Payment::class);
