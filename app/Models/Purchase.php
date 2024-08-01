@@ -11,6 +11,8 @@ class Purchase extends Model
 
     protected $table = 'purchases';
 
+    protected $fillable = ['purchase_id', 'data', 'payment_id'];
+
     public function payment()
     {
         return $this->belongsTo(Payment::class);
