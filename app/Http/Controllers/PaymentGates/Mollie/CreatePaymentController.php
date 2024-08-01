@@ -44,9 +44,13 @@ class CreatePaymentController extends Controller
             $item = new Payment();
             $item->payment_id = $payment->id;
             $item->pay_gate = PaymentGateDriver::MOLLIE->value;
-            $item->purchases = $purchases;
             $item->status = PaymentStatus::OPEN->value;
             $item->save();
+
+            foreach($purchases as $purchase)
+            {
+                $item->purchases()->create(['purchase_id' => $purchase->id, 'data' => $purchase]);
+            }
 
         } catch (Throwable $e) {
             dd($e);
