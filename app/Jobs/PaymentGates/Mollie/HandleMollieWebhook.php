@@ -2,7 +2,6 @@
 
 namespace App\Jobs\PaymentGates\Mollie;
 
-use App\Services\PaymentGates\Mollie\Webhook\MollieWebhookDto;
 use App\Services\PaymentGates\Mollie\Webhook\Strategy\WebhookStrategyFactory;
 use App\Services\PaymentGates\Mollie\Webhook\WebhookContext;
 use Illuminate\Bus\Queueable;
