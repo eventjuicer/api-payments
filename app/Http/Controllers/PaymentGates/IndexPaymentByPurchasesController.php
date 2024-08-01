@@ -11,7 +11,7 @@ class IndexPaymentByPurchasesController extends Controller
     {
         $ids = explode(',', request()->ids);
 
-        return response()->json(['payments' => Payment::whereHas('purchases', function($q) use ($ids) {
+        return response()->json(['data' => Payment::whereHas('purchases', function($q) use ($ids) {
             $q->whereIn('purchase_id', $ids);
         })->get()->toArray()]);
     }
