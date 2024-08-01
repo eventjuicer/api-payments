@@ -49,7 +49,7 @@ class CreatePaymentController extends Controller
 
             foreach($purchases as $purchase)
             {
-                $item->purchases()->create(['purchase_id' => $purchase->id, 'data' => $purchase]);
+                $item->purchases()->create(['purchase_id' => $purchase['id'], 'data' => $purchase]);
             }
 
         } catch (Throwable $e) {
