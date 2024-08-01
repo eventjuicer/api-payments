@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('participant_id');
-            $table->string('purchase_id');
-            $table->string('payment_id')->nullable();
+            $table->json('purchases');
+            $table->string('payment_id');
             $table->string('pay_gate');
             $table->string('status');
             $table->timestamps();

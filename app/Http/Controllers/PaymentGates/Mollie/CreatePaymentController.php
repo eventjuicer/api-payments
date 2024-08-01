@@ -7,37 +7,44 @@ use App\Enums\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentGates\Mollie\CreatePaymentRequest;
 use App\Models\Payment;
+use App\Services\Remotes\Contracts\MainRemoteRepositoryInterface;
 use Illuminate\Support\Str;
 use Mollie\Api\MollieApiClient;
 use Throwable;
 
 class CreatePaymentController extends Controller
 {
-    public function __construct(private MollieApiClient $mollie) {
+    public function __construct(
+        private MollieApiClient $mollie,
+        private MainRemoteRepositoryInterface $mainRemoteRepository) {
     }
 
     public function __invoke(CreatePaymentRequest $request)
     {
         try {
 
+            $purchases = $this->mainRemoteRepository->getPurchases($request->ids);
+
+            $amounts = array_column($purchases, 'amount');
+            $totalAmount = array_sum($amounts) / 100;
+
             $this->mollie->setApiKey(env('MOLLIE_KEY'));
 
             $payment = $this->mollie->payments->create([
                 "amount" => [
-                    "currency" => "EUR",
-                    "value" => rand(1,10) . ".00"
+                    "currency" => $purchases[0]['currency'],
+                    "value" => number_format($totalAmount, 2)
                 ],
                 "description" => Str::random(15),
-                "redirectUrl" => "http://onet.pl",
-                "webhookUrl" => "https://weci.pl/payment_gates/mollie/webhooks",
+                "redirectUrl" =>env('MOLLIE_REDIRECT_URL'),
+                "webhookUrl" => env('MOLLIE_WEBHOOK_URL') . "payment_gates/mollie/webhooks",
                 "metadata" => [],
             ]);
 
             $item = new Payment();
             $item->payment_id = $payment->id;
-            $item->participant_id = $request->participant_id;
             $item->pay_gate = PaymentGateDriver::MOLLIE->value;
-            $item->purchase_id = $request->purchase_id;
+            $item->purchases = $purchases;
             $item->status = PaymentStatus::OPEN->value;
             $item->save();
 

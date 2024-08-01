@@ -10,6 +10,10 @@ class Payment extends Model
 {
     protected $table = 'payments';
 
+    protected $casts = [
+        'purchases' => 'json'
+    ];
+
     use HasFactory;
 
     protected static function newFactory()
