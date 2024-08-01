@@ -24,7 +24,7 @@ class UpdateRemotePurchaseStatuses
      */
     public function handle(PaymentWasPaid $event): void
     {
-        $model = Payment::where('payment_id', $event->getPayment()->id)->firstOrFail();
+        $model = Payment::witch('purchases')->where('payment_id', $event->getPayment()->id)->firstOrFail();
 
         foreach($model->purchases as $purchase)
         {
