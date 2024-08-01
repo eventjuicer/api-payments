@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    protected $table = 'payments';
-
-    protected $casts = [
-        'purchases' => 'json'
-    ];
+    protected $table = 'payment_purchases';
 
     use HasFactory;
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 
     protected static function newFactory()
     {
