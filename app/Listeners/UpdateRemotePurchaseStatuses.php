@@ -28,8 +28,8 @@ class UpdateRemotePurchaseStatuses
 
         foreach($model->purchases as $purchase)
         {
-            $this->mainRemoteRepository->updatePurchase($purchase->id);
-            Log::debug('update remote purchaces status for' , $purchase->id );
+            $this->mainRemoteRepository->updatePurchase($purchase['id']);
+            Log::debug('update remote purchaces status for ' . $purchase['id']);
         }
     }
 }
