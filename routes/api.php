@@ -17,4 +17,4 @@ Route::post('/payments', function (Request $request) {
 
 
 Route::post('payments', CreatePaymentController::class)->name('payments.create');
-Route::get('payments_by_purchases', IndexPaymentByPurchasesController::class)->name('payments.index_by_purchases');
+Route::get('payments_by_purchases/{ids}', IndexPaymentByPurchasesController::class)->name('payments.index_by_purchases');
