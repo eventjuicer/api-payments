@@ -12,6 +12,15 @@ class MainRemoteRepository extends AbstractRemoteRepository implements MainRemot
         return env('MAIN_API_URL');
     }
 
+    public function getPurchases(array $purchasesIds)
+    {
+        $response = $this->client->get($this->baseServiceUrl().'purchases', $purchasesIds);
+
+        $body = json_decode($response->body(), true);
+
+        return $body;
+    }
+
     public function getPurchase(string $purchaseId)
     {
         $response = $this->client->get($this->baseServiceUrl().'purchases', $purchaseId);
