@@ -23,7 +23,7 @@ class MainRemoteRepository extends AbstractRemoteRepository implements MainRemot
 
     public function getPurchase(string $purchaseId)
     {
-        $response = $this->client->get($this->baseServiceUrl().'purchases', $purchaseId);
+        $response = $this->client->get($this->baseServiceUrl().'purchases/' . $purchaseId);
 
         $body = json_decode($response->body(), true);
 
@@ -32,7 +32,7 @@ class MainRemoteRepository extends AbstractRemoteRepository implements MainRemot
 
     public function resetPurchase(string $purchaseId)
     {
-        $response = $this->client->delete($this->baseServiceUrl().'purchases', $purchaseId);
+        $response = $this->client->delete($this->baseServiceUrl().'purchases/' . $purchaseId);
 
         $body = json_decode($response->body(), true);
 
@@ -41,7 +41,7 @@ class MainRemoteRepository extends AbstractRemoteRepository implements MainRemot
 
     public function updatePurchase(string $purchaseId)
     {
-        $response = $this->client->patch($this->baseServiceUrl().'purchases', $purchaseId);
+        $response = $this->client->patch($this->baseServiceUrl().'purchases/' . $purchaseId);
 
         $body = json_decode($response->body(), true);
 
