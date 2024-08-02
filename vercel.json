@@ -2,7 +2,7 @@
     "version": 2,
       "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.1" }
+        "api/index.php": { "runtime": "vercel-php@0.7.1" }
     },
     "routes": [{
         "src": "/(favicon\\.ico|robots\\.txt)",
@@ -18,9 +18,10 @@
     }],
     "env": {
         "APP_NAME": "pay.eventjuicer.com",
-        "APP_ENV": "development",
-        "APP_DEBUG": "true",
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
         "APP_URL": "https://pay.eventjuicer.com",
+        "VERCEL_DEMO_MODE": "true",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -32,7 +33,7 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "array",
         "NODE_PATH": "node"
-
     }
 }
+
 
