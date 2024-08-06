@@ -47,7 +47,7 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
-        "vercel": [
+        "post-install-cmd": [
             "@php artisan migrate",
             "@php artisan cache:clear",
             "@php artisan config:clear"
